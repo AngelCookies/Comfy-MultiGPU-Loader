@@ -1,0 +1,20 @@
+# IDE/editor
+.idea/
+.vscode/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# OS files
+.DS_Store
+
+# other
+.history-log.txt
+comfyui.log
