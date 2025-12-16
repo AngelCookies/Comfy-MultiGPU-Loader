@@ -8,11 +8,7 @@ We stand with Ukraine. #standwithukraine.
 This project focuses on sharding native safetensors checkpoints across multiple GPUs. It does not provide GGUF loaders, quantization, or VRAM-reduction tooling like ComfyUI-GGUF. The goal here is to combine multiple GPUs to run large models, not to compress models for single-GPU fits.
 
 ### License
-Released under the **Stefan Open Learning License (Hippocratic 3.0 Non-Commercial)** with an explicit ban on government use.
-
-🧩 Free for learning, research, and non-commercial projects  
-🚫 Not for military, surveillance, exploitative use, or any government/agency/contractor use  
-💼 Commercial partnerships: free for startups under $1M annual revenue; contact stefanfg@pm.me for enterprise licensing.
+Licensed under GPL-3.0 (see LICENSE.md). Ethical use is encouraged, but GPL terms apply for compatibility with ComfyUI.
 
 ### Attribution
 Developed by Stefan with assistance from AI tools (Claude by Anthropic, GPT-5 by OpenAI, Gemini by Google).
