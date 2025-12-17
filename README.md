@@ -8,7 +8,7 @@ We stand with Ukraine. #standwithukraine.
 This project focuses on sharding native safetensors checkpoints across multiple GPUs. It does not provide GGUF loaders, quantization, or VRAM-reduction tooling like ComfyUI-GGUF. The goal here is to combine multiple GPUs to run large models, not to compress models for single-GPU fits.
 
 ### License
-Licensed under GPL-3.0 (see LICENSE.md). Ethical use is encouraged, but GPL terms apply for compatibility with ComfyUI.
+Licensed under GPL-3.0 (see LICENSE). Ethical use is encouraged, but GPL terms apply for compatibility with ComfyUI.
 
 ### Attribution
 Developed by Stefan with assistance from AI tools (Claude by Anthropic, GPT-5 by OpenAI, Gemini by Google).
@@ -29,7 +29,7 @@ Developed by Stefan with assistance from AI tools (Claude by Anthropic, GPT-5 by
 
 ### Known issues
 - Logging/diagnostics can under-report activity on later runs; ongoing investigation.
-- Early-stage code other bugs may exist.
+- Early-stage code — other bugs may exist.
 
 ### Verified models
 - Flux Dev Full Model fp32 (~22.17 GB) on multi-GPU.  
@@ -52,10 +52,11 @@ Developed by Stefan with assistance from AI tools (Claude by Anthropic, GPT-5 by
 - Harden logging/diagnostics.
 
 Created: 15 Dec 2025  
-Last updated: 15 Dec 2025
+Last updated: 17 Dec 2025
 
 ### Changelog
-- 2025-12-15: Initial public-ready docs; added loader/sampler debug VRAM logging, shard usage counts, government-use ban in license.
+- 2025-12-17: GPL-3.0 license alignment; minor README cleanup.
+- 2025-12-15: Initial public-ready docs; added loader/sampler debug VRAM logging, shard usage counts.
 
 ### Current nodes
 - Load Checkpoint (MultiGPU) / Debug  
