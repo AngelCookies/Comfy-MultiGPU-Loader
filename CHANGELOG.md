@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.5 — 2025-12-18 - beta build
+- Added `Hardware Validator (MultiGPU)` safety node to check GPU count/VRAM before heavy loads (e.g., Flux Dev 2 FP32).
+- Loaders now accept a `safety_ok` input, allowing validation nodes to gate checkpoint loading.
+- README/NODES updated with safety rail notes.
+- There is no dot toml update for this version because i still need to do more testing on the new Hardware Validator (MultiGPU) node along with other changes i am working on. 
+
 ## 0.1.4 — 2025-12-17
 - Documentation cleanup and modularization:
   - Added separate files for changelog, roadmap, node list, contributors, tested hardware, and user guide.

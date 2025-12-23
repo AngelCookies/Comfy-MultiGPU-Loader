@@ -69,6 +69,7 @@ class LoadCheckpointMultiGPUDebug:
                 "clip_loader_type": (clip_type_choices, {"default": "auto", "tooltip": "Decoder profile for dual-CLIP loader."}),
                 "vae_name": (vae_choices, {"default": vae_choices[0] if vae_choices else "<auto>", "tooltip": "External VAE to use when checkpoint does not bundle one."}),
                 "log_vram_snapshot": ("BOOLEAN", {"default": False, "tooltip": "Record per-GPU VRAM usage before/after layout for troubleshooting."}),
+                "safety_ok": ("BOOLEAN", {"default": True, "tooltip": "Connect to Hardware Validator; loading aborts when false."}),
             },
         }
 
@@ -88,6 +89,7 @@ class LoadCheckpointMultiGPUDebug:
         clip_loader_type="auto",
         vae_name="<auto>",
         log_vram_snapshot=False,
+        safety_ok=True,
     ):
         available_gpus = get_available_gpus()
 
@@ -105,6 +107,12 @@ class LoadCheckpointMultiGPUDebug:
 
         actual_num_gpus = validate_gpu_count(num_gpus, valid_gpu_ids)
         used_gpus = valid_gpu_ids[:actual_num_gpus]
+
+        if not safety_ok:
+            status = "❌ Safety validation failed or was bypassed. Resolve Hardware Validator warnings first."
+            debug_enabled = self._debug_enabled() or test_mode or ckpt_name == "test_mode"
+            error_img = create_colored_image([180, 70, 70], "Safety check") if debug_enabled else None
+            return (None, None, None, error_img, status)
 
         # TEST MODE - Uses dummy objects for workflow testing
         debug_enabled = self._debug_enabled() or test_mode or ckpt_name == "test_mode"
@@ -580,16 +588,18 @@ class LoadCheckpointMultiGPU(LoadCheckpointMultiGPUDebug):
         clip_name2="<auto>",
         clip_loader_type="auto",
         vae_name="<auto>",
+        safety_ok=True,
     ):
         model, clip, vae, _image, _status = super().load_checkpoint(
-            ckpt_name,
-            num_gpus,
-            False,
-            gpu_ids,
-            clip_name1,
-            clip_name2,
-            clip_loader_type,
-            vae_name,
+            ckpt_name=ckpt_name,
+            num_gpus=num_gpus,
+            test_mode=False,
+            gpu_ids=gpu_ids,
+            clip_name1=clip_name1,
+            clip_name2=clip_name2,
+            clip_loader_type=clip_loader_type,
+            vae_name=vae_name,
+            safety_ok=safety_ok,
         )
         return (model, clip, vae)
 
@@ -620,16 +630,18 @@ class LoadFluxCheckpointMultiGPU(LoadFluxCheckpointMultiGPUDebug):
         clip_name2="<auto>",
         clip_loader_type="auto",
         vae_name="<auto>",
+        safety_ok=True,
     ):
         model, clip, vae, _image, _status = super().load_checkpoint(
-            ckpt_name,
-            num_gpus,
-            False,
-            gpu_ids,
-            clip_name1,
-            clip_name2,
-            clip_loader_type,
-            vae_name,
+            ckpt_name=ckpt_name,
+            num_gpus=num_gpus,
+            test_mode=False,
+            gpu_ids=gpu_ids,
+            clip_name1=clip_name1,
+            clip_name2=clip_name2,
+            clip_loader_type=clip_loader_type,
+            vae_name=vae_name,
+            safety_ok=safety_ok,
         )
         return (model, clip, vae)
 

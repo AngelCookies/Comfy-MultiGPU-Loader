@@ -16,8 +16,11 @@ Developed by Stefan with assistance from AI tools (Claude by Anthropic, GPT-5 by
 ### Installation
 - Drop this repository into `ComfyUI/custom_nodes/Comfy-MultiGPU-Loader` (folder name can vary; ensure it contains this README and `nodes/`).
 - Install requirements if needed: `pip install -r requirements.txt` (accelerate/torch are typically already present in ComfyUI environments).
-- Restart ComfyUI. Nodes appear under `MultiGPU/Loaders`, `MultiGPU/Sampling`, `MultiGPU/VAE`, and `MultiGPU/Diagnostics`.
+- Restart ComfyUI. Nodes appear under `MultiGPU/Loaders`, `MultiGPU/Sampling`, `MultiGPU/VAE`, `MultiGPU/Diagnostics`, and `MultiGPU/Safety`.
 For usage and debugging details, see `USER_GUIDE.md`.
+
+### Safety rail
+For heavy checkpoints (e.g., Flux Dev 2 FP32), run the `Hardware Validator (MultiGPU)` node before the loaders and feed its `gpu_ids`/`ok` outputs into the loader inputs. It will block or warn when GPU count/VRAM is below profile requirements.
 
 ### Known issues
 - Logging/diagnostics can under-report activity on later runs; ongoing investigation.
@@ -58,4 +61,3 @@ High-end GPUs are expensive (e.g., RTX 5090 ~£2,500), and even large cards cap 
 Note on low-VRAM cards: the focus is 8, 12, 24 GB GPUs working together. While some of the techniques might help 4–6 GB cards, supporting very low-VRAM hardware for large models is not a target.
 
 Note on interconnects: NVLink/SLI is not required; sharding runs over standard PCIe (e.g., tested on RTX 3070s without NVLink).
-

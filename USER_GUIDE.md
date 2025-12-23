@@ -5,6 +5,7 @@
 - Flux: external text encoders `clip_l.safetensors` and `t5xxl_fp8_e4m3fn_scaled.safetensors`, plus VAE `ae.safetensors` placed in `models/text_encoders` and `models/vae`, then selected in the Flux loader.
 
 ## Quick usage tips
+- For heavy checkpoints (Flux Dev 2 FP32, etc.), run *Hardware Validator (MultiGPU)* first and feed its `gpu_ids` string into the loader plus its `ok` boolean into the loader’s `safety_ok` input.
 - Use the debug loaders with `log_vram_snapshot` when diagnosing sharding; switch to non-debug loaders for production graphs.
 - Pair the debug sampler with a display node to capture shard layout, per-GPU block counts, and VRAM deltas in `comfyui.log`.
 

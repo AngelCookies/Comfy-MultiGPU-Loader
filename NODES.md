@@ -13,4 +13,7 @@ VAE
 Diagnostics
 - GPU Status Display (+ Debug) — status and VRAM visualization.
 
+Safety
+- Hardware Validator (MultiGPU) — checks GPU count/VRAM before loading heavy checkpoints and can gate the loaders.
+
 Only the loader variants are “all-in-one” for convenience; other nodes mirror ComfyUI defaults with multi-GPU plumbing and diagnostics.
